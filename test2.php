@@ -12,25 +12,25 @@ $pdf->setPrintHeader(false);
 $pdf->setPrintFooter(true);
 $pdf->SetAutoPageBreak(FALSE, 0);
 $style = array(
-	'position' => '',
-	'align' => 'C',
-	'stretch' => true,
-	'fitwidth' => true,
-	'cellfitalign' => '',
-	'border' => false,
-	'hpadding' => 'auto',
-	'vpadding' => 'auto',
-	'fgcolor' => array(0, 0, 0),
-	'bgcolor' => false, //array(255,255,255),
-	'text' => true,
-	'font' => 'helvetica',
-	'fontsize' => 8,
-	'stretchtext' => 4
+    'position' => '',
+    'align' => 'C',
+    'stretch' => true,
+    'fitwidth' => true,
+    'cellfitalign' => '',
+    'border' => false,
+    'hpadding' => 'auto',
+    'vpadding' => 'auto',
+    'fgcolor' => array(0, 0, 0),
+    'bgcolor' => false, //array(255,255,255),
+    'text' => true,
+    'font' => 'helvetica',
+    'fontsize' => 8,
+    'stretchtext' => 4
 );
 // set default monospaced font
 // $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
 // set margins
- $pdf->SetMargins(2, 2, 2);
+$pdf->SetMargins(2, 2, 2);
 
 // set auto page breaks
 // $pdf->SetAutoPageBreak(TRUE,0);
@@ -69,6 +69,6 @@ $pdf->writeHTML($html, true, false, false, false, '');
 
 
 
-$pdf->Output('example_001.pdf', 'I');
+$pdf->Output('example_label_sticker.pdf');
 //============================================================+
 // END OF FILE
