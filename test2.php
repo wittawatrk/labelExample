@@ -22,38 +22,57 @@ $style = array(
     'vpadding' => 'auto',
     'fgcolor' => array(0, 0, 0),
     'bgcolor' => false, //array(255,255,255),
-    'text' => true,
+    'text' => false,
     'font' => 'helvetica',
     'fontsize' => 8,
     'stretchtext' => 4
 );
+$barcode_heigth = 13; //ความสูง barcode หน่วยเป็น mm
 // set default monospaced font
 // $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
 // set margins
-$pdf->SetMargins(2, 2, 2);
+$pdf->SetMargins(1, 1, 1);
+$tracking_code = 'SP050287118';
+$sender = array(
+    'name' => 'ตาล จิรกานต์ ',
+    'tel' => '081544470',
+    'addr' => 'ตาล จิรกานต์ 178/109 ถนน ประชาสโมสร ตำบลในเมือง อำเภอเมือง ขอนแก่น 40000',
+    'postcode' => '40000'
 
+);
+$receiver = array(
+    'name' => 'Nize Seasonings',
+    'tel' => '0991565055',
+    'addr' => '16/53 ถนนบางขุนเทียน-ชายทะเล ซ.เทียนทะเล 20 แสมดำ บางขุนเทียน กทม',
+    'postcode' => '10150'
+
+);
 // set auto page breaks
 // $pdf->SetAutoPageBreak(TRUE,0);
 $pdf->AddPage();
 
-$pdf->Image('logo.png', 5, 4, 31.75, 5.749, 'PNG', '', '', true, 150, '', false, false, 0, false, false, false);
-$pdf->Image('flash_express.png', 41.75, 2, 31.75, 9.617604167, 'PNG', '', '', true, 150, '', false, false, 0, false, false, false);
+$pdf->Image('logo.png', 1, 0.5, 31.75, 5.749, 'PNG', 'www.shippop.com', '', true, 150, '', false, false, 0, false, false, false);
+$pdf->Image('flash_express.png', 46.75, -1, 31.75, 9.617604167, 'PNG', '', '', true, 150, '', false, false, 0, false, false, false);
 
-$pdf->write1DBarcode('SP050287118', 'C128', '8', '11', '', 18, 0.4, $style, 'C');
+$pdf->write1DBarcode($tracking_code, 'C128', '8', '7', '', $barcode_heigth, 0.4, $style, 'C');
+$pdf->SetY(18);
+$pdf->SetFont('helvetica', 'B', 14);
+$pdf->Cell(0, 0, $tracking_code, 0, 1, 'C');
+$pdf->setFont('thsarabun');
 $html = <<<EOD
 <table cellspacing="0" cellpadding="2">
     <tr>
-        <td colspan="4" style = "border: 1px solid black;font-size:12px"><b>ผู้ส่ง</b> ตาล จิรกานต์( โทร. 081544470 )
-            <br> ตาล จิรกานต์ 178/109 ถนน ประชาสโมสร ตำบลในเมือง อำเภอเมือง ขอนแก่น 40000 40000
+        <td colspan="4" style = "border: 1px solid black;font-size:12px"><b>ผู้ส่ง</b> {$sender['name']} ( {$sender['tel']} )
+            <br>{$sender['addr']} <b>{$sender['postcode']}</b>
         </td>
     </tr>
     <tr>
-        <td colspan="4" style = "border-left: 1px solid black;border-right: 1px solid black;font-size:16px ">(ผู้รับ) Nize Seasonings (0991565055)
-            <br> 16/53 ถนนบางขุนเทียน-ชายทะเล ซ.เทียนทะเล 20 แสมดำ บางขุนเทียน กทม</td>
+        <td colspan="4" style = "height:24mm;border-left: 1px solid black;border-right: 1px solid black;font-size:16px "><b>ผู้รับ</b> {$receiver['name']} ({$receiver['tel']})
+            <br>{$receiver['addr']}</td>
     </tr>
     <tr>
         <td colspan="3" style = "border-left: 1px solid black;width:82%"></td>
-        <td style="width:18%;font-size:18px;border: 1px solid black;text-align:right;border-top:1px solid black">10150</td>
+        <td style="width:18%;font-size:18px;border: 1px solid black;text-align:right;border-top:1px solid black">{$receiver['postcode']}</td>
     </tr>
     <tr >
         <td style = "border: 1px solid black;" colspan="2"></td>
@@ -62,7 +81,7 @@ $html = <<<EOD
 
 </table>
 EOD;
-$pdf->SetY(28);
+$pdf->SetY(24);
 $pdf->writeHTML($html, true, false, false, false, '');
 
 

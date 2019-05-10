@@ -38,9 +38,9 @@ class PDF extends TCPDF
         return $this->lMargin;
     }
     public function Footer(){
-        $this->setY(-7);
+        $this->setY(-5.2);
         $this->SetFont('helvetica', 'I', 6);
         $this->Cell(0,8,'www.shippop.com',0,0);
-        $this->Image('logo.png', 69, 76, 8.73, 1.6, 'PNG', '', '', true, 150, '', false, false, 0, false, false, false);
+        $this->Image('logo.png', 70, 78, 8.73, 1.6, 'PNG', '', '', true, 150, '', false, false, 0, false, false, false);
     }
 }
