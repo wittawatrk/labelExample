@@ -43,4 +43,10 @@ class PDF extends TCPDF
         $this->Cell(0,8,'www.shippop.com',0,0);
         $this->Image('logo.png', 70, 78, 8.73, 1.6, 'PNG', '', '', true, 150, '', false, false, 0, false, false, false);
     }
+    public function Header(){
+        // $this->setY(-5.2);
+        $this->SetFont('helvetica', 'I', 6);
+        $this->Cell(5,0,'www.shippop.com',0,0);
+        $this->Image('logo.png', 70, 1, 8.73, 1.6, 'PNG', '', '', true, 150, '', false, false, 0, false, false, false);
+    }
 }
